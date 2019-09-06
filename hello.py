@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from flask_script import Manager
 from flask_bootstrap import Bootstrap
 
+app = Flask(__name__)
+
 manager = Manager(app)
 
 
