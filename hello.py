@@ -1,13 +1,15 @@
+from datetime import datetime
 from flask import Flask, render_template
-from flask_script import Manager
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
-from datetime import datetime
+from flask_script import Manager
+
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
-manager = Manager(app)
 moment = Moment(app)
+manager = Manager(app)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
