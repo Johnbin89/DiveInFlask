@@ -19,7 +19,7 @@ class NameForm(Form):
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 's12567dg'
-app.config['SQLALCHEMY_DATABASER_URI'] =\
+app.config['SQLALCHEMY_DATABASE_URI'] =\
     'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 bootstrap = Bootstrap(app)
@@ -44,7 +44,7 @@ class User(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __repr__(self):
-        return '<User %r>' %self.name
+        return '<User %r>' %self.username
 
 @app.errorhandler(404)
 def page_not_found(e):
