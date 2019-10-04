@@ -34,7 +34,7 @@ manager.add_command("shell", Shell(make_context=make_shell_context))   #integrad
 manager.add_command('db', MigrateCommand)
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+
 
 class Role(db.Model):
     __tablename__ = 'roles'
@@ -53,6 +53,9 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' %self.username
+
+
+migrate = Migrate(app, db)
 
 @app.errorhandler(404)
 def page_not_found(e):
