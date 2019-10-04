@@ -9,7 +9,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
-from flask_mail import Mail
+from flask_mail import Mail, Message
 from threading import Thread
 
 def make_shell_context():                                                  #integrade db with python shell
@@ -28,13 +28,13 @@ app.config['SECRET_KEY'] = 's12567dg'
 app.config['SQLALCHEMY_DATABASE_URI'] =\
     'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_SERVER'] = '***REMOVED***'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['FLASKY_MAIL_SUBJECT_PREFIX'] = '[Flasky]'
-app.config['FLASKY_MAIL_SENDER'] = 'Flasky Admin <flasky@example.com>'
+app.config['FLASKY_MAIL_SENDER'] = '***REMOVED***'
 app.config['FLASKY_ADMIN'] = os.environ.get('FLASKY_ADMIN')
 bootstrap = Bootstrap(app)
 moment = Moment(app)
