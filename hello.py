@@ -8,6 +8,7 @@ from flask_wtf import Form
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate, MigrateCommand
 
 def make_shell_context():                                                  #integrade db with python shell
     return dict(app=app, db=db, User=User, Role=Role)
@@ -27,10 +28,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] =\
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+
 manager = Manager(app)
 manager.add_command("shell", Shell(make_context=make_shell_context))   #integrade db with python shell
+manager.add_command('db', MigrateCommand)
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class Role(db.Model):
     __tablename__ = 'roles'
