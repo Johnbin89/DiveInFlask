@@ -27,3 +27,11 @@ def index():
 @main.route('/user/<name>')
 def user(name):
     return render_template('user.html', name=name)
+
+@main.route('/services')
+def services():
+    return render_template('services.html')
+
+@main.route('/contactus')
+def contactus():
+    return render_template('contactus.html')
