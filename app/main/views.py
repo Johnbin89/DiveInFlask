@@ -2,12 +2,16 @@ from datetime import datetime
 from flask import render_template, session, redirect, url_for, flash, current_app
 from . import main
 from ..import db
-from ..models import User
+from .. import mysql
+from ..models import Divespot
 from ..email import send_email
 from .forms import NameForm
 
+from sqlalchemy import func
+
 @main.route('/', methods=['GET', 'POST'])
 def index():
+    '''
     form = NameForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.name.data).first()
@@ -22,7 +26,11 @@ def index():
         session['name'] = form.name.data
         form.name.data = ''
         return redirect(url_for('.index'))
-    return render_template('index.html', form=form, name=session.get('name'), known = session.get('known', False), current_time=datetime.utcnow())
+    '''
+    random_spots = Divespot.query.order_by(func.random()).limit(3).all()
+    print(random_spots)
+    #return render_template('index.html', form=form, name=session.get('name'), known = session.get('known', False), current_time=datetime.utcnow())
+    return render_template('index.html', random_spots=random_spots)
 
 @main.route('/user/<name>')
 def user(name):

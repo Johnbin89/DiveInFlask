@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_mail import Mail, Message
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
+from flask_mysqldb import MySQL
 from config import config
 
 
@@ -10,6 +11,7 @@ bootstrap = Bootstrap()
 moment = Moment()
 mail = Mail()
 db = SQLAlchemy()
+mysql = MySQL()
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -20,6 +22,7 @@ def create_app(config_name):
     mail.init_app(app)
     moment.init_app(app)
     db.init_app(app)
+    mysql.init_app(app)
 
     #attach routes and custom error pages here
     from .main import main as main_blueprint

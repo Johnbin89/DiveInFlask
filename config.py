@@ -15,13 +15,19 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-    'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    ('mysql://***REMOVED***:***REMOVED***@***REMOVED***/***REMOVED***')
 
     MAIL_SERVER = '***REMOVED***'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
+    MYSQL_USER = '***REMOVED***'
+    MYSQL_PASSWORD = '***REMOVED***'
+    MYSQL_HOST = '***REMOVED***'
+    MYSQL_DB = '***REMOVED***'
+    MYSQL_CURSORCLASS = 'DictCursor'
 
 class TestingConfig(Config):
     TESTING = True

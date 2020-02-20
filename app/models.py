@@ -17,3 +17,16 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' %self.username
+
+class Divespot(db.Model):
+    __tablename__ = 'divespots'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))
+    depth = db.Column(db.Integer)
+    type = db.Column(db.String(30))
+    posLat = db.Column(db.String(30))
+    posLng = db.Column(db.String(30))
+
+
+    def __repr__(self):
+        return '<Divespot %r>' %self.name

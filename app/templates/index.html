@@ -66,6 +66,7 @@
   <div class="col-md-12 col-lg-8 col-xl-8 col-sm-12 col-12">
   <section class="dive-spots">
     <div class="container">
+      {% for spot in random_spots %}
       <div class="card dive-spot">
         <div class="row">
           <div class="col-6">
@@ -73,13 +74,15 @@
           </div>
           <div class="col-6">
             <div class="card-body">
-              <h4 class="card-title"><a class="divespot-name" href="#" onclick="location.href='../app/dive_spot.php?name={{ name1 }}'">{{ name1 }}</a></h4>
-              <p class="card-text">{{ depth1 }} meters</p>
-              <p class="card-text">{{ type1 }} </p>
+              <h4 class="card-title"><a class="divespot-name" href="#" onclick="location.href='../app/dive_spot.php?name={{ name1 }}'">{{ spot.name }}</a></h4>
+              <p class="card-text">{{ spot.depth }} meters</p>
+              <p class="card-text">{{ spot.type }} </p>
             </div>
           </div>
         </div>
       </div>
+      {% endfor %}
+      <!--
       </br>
       <div class="card dive-spot">
         <div class="row">
@@ -110,8 +113,10 @@
           </div>
         </div>
       </div>
-  </section>
+      -->
+  
   </div>
+  </section>
   <section class="events-calendar col-md-12 col-lg-4 col-xl-4 col-sm-12 col-12">
     <div id="caleandar">
 
