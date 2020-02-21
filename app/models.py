@@ -26,7 +26,17 @@ class Divespot(db.Model):
     type = db.Column(db.String(30))
     posLat = db.Column(db.String(30))
     posLng = db.Column(db.String(30))
+    images = db.relationship('Divespot', backref='images')
 
 
     def __repr__(self):
         return '<Divespot %r>' %self.name
+
+class Image(db.Model):
+    __tablename__ = 'images'
+    id = db.Column(db.Integer, primary_key=True)
+    image = db.Column(db.String(100))
+    divespotID = db.Column(db.Integer, db.ForeignKey('divespots.id'))
+
+    def __repr__(self):
+        return '<Image %r>' %self.image
