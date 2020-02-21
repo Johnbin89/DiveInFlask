@@ -3,7 +3,7 @@ from flask import render_template, session, redirect, url_for, flash, current_ap
 from . import main
 from ..import db
 from .. import mysql
-from ..models import Divespot
+from ..models import *
 from ..email import send_email
 from .forms import NameForm
 
@@ -29,8 +29,14 @@ def index():
     '''
     random_spots = Divespot.query.order_by(func.random()).limit(3).all()
     print(random_spots)
+    random_spots_image = []
+    for spot in random_spots:
+        print(type(spot))
+        random_spots_image.append([spot, spot.images.order_by(func.random()).first().image])
+        print(random_spots_image[0])
+    print(random_spots_image)
     #return render_template('index.html', form=form, name=session.get('name'), known = session.get('known', False), current_time=datetime.utcnow())
-    return render_template('index.html', random_spots=random_spots)
+    return render_template('index.html', random_spots_image=random_spots_image)
 
 @main.route('/user/<name>')
 def user(name):

@@ -66,22 +66,22 @@
     <div class="col-md-12 col-lg-8 col-xl-8 col-sm-12 col-12">
       <section class="dive-spots">
         <div class="container">
-          {% for spot in random_spots %}
+          {% for spot in random_spots_image %}
           <div class="card dive-spot">
             <div class="row">
               <div class="col-6">
-                <img src="../spotimages/{{ img1 }}" alt="Image of {{ spot.name }}" style="width:100%">
+                <img src="{{ url_for('static', filename=('spotimages/{}'.format(spot[1]))) }}" alt="Image of {{ spot[0].name }}" style="width:100%">
               </div>
               <div class="col-6">
                 <div class="card-body">
-                  <h4 class="card-title"><a class="divespot-name" href="#"
-                      onclick="location.href='../app/dive_spot.php?name={{ name1 }}'">{{ spot.name }}</a></h4>
-                  <p class="card-text">{{ spot.depth }} meters</p>
-                  <p class="card-text">{{ spot.type }} </p>
+                  <h4 class="card-title"><a class="divespot-name" href="#">{{ spot[0].name }}</a></h4>
+                  <p class="card-text">{{ spot[0].depth }} meters</p>
+                  <p class="card-text">{{ spot[0].type }} </p>
                 </div>
               </div>
             </div>
           </div>
+          <br>
           {% endfor %}
         </div>
       </section>
