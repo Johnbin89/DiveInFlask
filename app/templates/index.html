@@ -63,100 +63,67 @@
   </section>
   </br>
   <div class="row">
-  <div class="col-md-12 col-lg-8 col-xl-8 col-sm-12 col-12">
-  <section class="dive-spots">
-    <div class="container">
-      {% for spot in random_spots %}
-      <div class="card dive-spot">
-        <div class="row">
-          <div class="col-6">
-            <img src="../spotimages/{{ img1 }}" alt="Spot 1" style="width:100%">
-          </div>
-          <div class="col-6">
-            <div class="card-body">
-              <h4 class="card-title"><a class="divespot-name" href="#" onclick="location.href='../app/dive_spot.php?name={{ name1 }}'">{{ spot.name }}</a></h4>
-              <p class="card-text">{{ spot.depth }} meters</p>
-              <p class="card-text">{{ spot.type }} </p>
+    <div class="col-md-12 col-lg-8 col-xl-8 col-sm-12 col-12">
+      <section class="dive-spots">
+        <div class="container">
+          {% for spot in random_spots %}
+          <div class="card dive-spot">
+            <div class="row">
+              <div class="col-6">
+                <img src="../spotimages/{{ img1 }}" alt="Image of {{ spot.name }}" style="width:100%">
+              </div>
+              <div class="col-6">
+                <div class="card-body">
+                  <h4 class="card-title"><a class="divespot-name" href="#"
+                      onclick="location.href='../app/dive_spot.php?name={{ name1 }}'">{{ spot.name }}</a></h4>
+                  <p class="card-text">{{ spot.depth }} meters</p>
+                  <p class="card-text">{{ spot.type }} </p>
+                </div>
+              </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-      </div>
-      {% endfor %}
-      <!--
-      </br>
-      <div class="card dive-spot">
-        <div class="row">
-          <div class="col-6">
-            <img src="../spotimages/{{ img2 }}" alt="Spot 2" style="width:100%">
-          </div>
-          <div class="col-6">
-            <div class="card-body">
-              <h4 class="card-title"><a class="divespot-name" href="#" onclick="location.href='../app/dive_spot.php?name={{ name2 }}'">{{ name2 }}</a></h4>
-              <p class="card-text">{{ depth2 }} meters</p>
-              <p class="card-text">{{ type2 }} </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      </br>
-      <div class="card dive-spot">
-        <div class="row">
-          <div class="col-6">
-            <img src="../spotimages/{{ img3 }}" alt="Spot 3" style="width:100%">
-          </div>
-          <div class="col-6">
-            <div class="card-body">
-              <h4 class="card-title"><a class="divespot-name" href="#" onclick="location.href='../app/dive_spot.php?name={{ name3 }}'">{{ name3 }}</a></h4>
-              <p class="card-text">{{ depth3 }} meters</p>
-              <p class="card-text">{{ type3 }} </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
-  
-  </div>
-  </section>
-  <section class="events-calendar col-md-12 col-lg-4 col-xl-4 col-sm-12 col-12">
-    <div id="caleandar">
+      </section>
+      <section class="events-calendar col-md-12 col-lg-4 col-xl-4 col-sm-12 col-12">
+        <div id="caleandar">
 
+        </div>
+      </section>
     </div>
-  </section>
   </div>
-</div>
 
-<script src="../views/caleandar.js"></script>
-<script> 
-var events = [];
-</script>
-{% for item in event_calendar %}
-<!--
+  <script src="../views/caleandar.js"></script>
+  <script>
+    var events = [];
+  </script>
+  {% for item in event_calendar %}
+  <!--
 item[0] is a string with year of event
 item[1] is a string with month of event
 item[2] is a string with day of event
 item[3] is a string with name of event
 -->
-<script>
-  //https://www.cssscript.com/create-simple-event-calendar-javascript-caleandar-js/
+  <script>
+    //https://www.cssscript.com/create-simple-event-calendar-javascript-caleandar-js/
     events.push({ 'Date': new Date('{{ item[0] }}', '{{ item[1] }}', '{{ item[2] }}'), 'Title': '{{ item[3] }}', 'Link': '../app/dive_event.php?id={{ item[4] }}' });
-</script>
-{% endfor %}
-<script>
-  var settings = {};
-  var element = document.getElementById('caleandar');
-  caleandar(element, events, settings);
-</script>
+  </script>
+  {% endfor %}
+  <script>
+    var settings = {};
+    var element = document.getElementById('caleandar');
+    caleandar(element, events, settings);
+  </script>
 
-{% if error_message is defined %}
-<script>
-  alert('{{ error_message }}');
-</script>
-{% endif %}
+  {% if error_message is defined %}
+  <script>
+    alert('{{ error_message }}');
+  </script>
+  {% endif %}
 
 
-{% endblock %}
-  
-{% block scripts %}
+  {% endblock %}
+
+  {% block scripts %}
   {{ super() }}
-{% endblock %}
-
+  {% endblock %}
