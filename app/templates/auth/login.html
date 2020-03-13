@@ -1,0 +1,37 @@
+{% from "auth/_render_field.html" import render_field %}
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+{% endblock %}
+
+{% block page_content %}
+
+
+    <div class="container" id="signinbox">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <h1>Sign In</h1>
+          <br>
+          <form action="" method="POST" >
+            {{ render_field(form.username, placeholder=form.username.label.text) }}
+            <br>
+            {{ render_field(form.password, placeholder=form.password.label.text) }}
+            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            Don't have an accout? <a href="../app/signup.php">  Sign up!</a>
+            <br>
+            <br>           
+            {{ form.submit(class="btn btn-primary btn-block") }}
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    {% endblock %}
+    
+    

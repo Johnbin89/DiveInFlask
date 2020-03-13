@@ -43,17 +43,17 @@
          <a class="nav-link" href="/contactus">Contact Us</a>
        </li>
        
-        {% if user is defined %}
+        {% if current_user.is_authenticated %}
         <li class="nav-item dropdown">
           <a id="navname" class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">{{ user }}  </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="../app/user_account.php"> Your Account </a></li>
-            <li><a class="dropdown-item" href="../app/logout.php"> Logout </a></li>
+            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}"> Logout </a></li>
           </ul>
         </li>
         {% else %}
         <li class="{{ login }}" id="login">
-          <a class="nav-link" href="../app/login.php">Login</a>
+          <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
         </li>
         {% endif %}
 
