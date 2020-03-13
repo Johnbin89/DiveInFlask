@@ -15,7 +15,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-    ('mysql://***REMOVED***:***REMOVED***@***REMOVED***/***REMOVED***')
+    ('***REMOVED***')
 
     MAIL_SERVER = '***REMOVED***'
     MAIL_PORT = 587
