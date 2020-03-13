@@ -16,7 +16,8 @@
         <div class="col-md-6 mx-auto">
           <h1>Sign In</h1>
           <br>
-          <form action="" method="POST" >
+          <form action="{{ url_for('auth.login') }}" method="POST" >
+            {{ form.csrf_token }}
             {{ render_field(form.username, placeholder=form.username.label.text) }}
             <br>
             {{ render_field(form.password, placeholder=form.password.label.text) }}
