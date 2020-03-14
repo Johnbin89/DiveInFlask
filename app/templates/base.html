@@ -33,13 +33,13 @@
    </button>
    <div class="collapse navbar-collapse" id="navbarNav">
      <ul class="navbar-nav ml-auto">
-       <li class="{{ home }}">
+       <li class="{{ 'nav-item active' if active_page == 'home' else 'nav-item' }}">
          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
        </li>
-       <li class="{{ services }}">
+       <li class="{{ 'nav-item active' if active_page == 'services' else 'nav-item' }}">
          <a class="nav-link" href="/services">Services</a>
        </li>
-       <li class="{{ contactus }}" id="contactus">
+       <li class="{{ 'nav-item active' if active_page == 'contactus' else 'nav-item' }}" id="contactus">
          <a class="nav-link" href="/contactus">Contact Us</a>
        </li>
        
@@ -52,7 +52,7 @@
           </ul>
         </li>
         {% else %}
-        <li class="{{ login }}" id="login">
+        <li class="{{ 'nav-item active' if active_page == 'login' else 'nav-item' }}" id="login">
           <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
         </li>
         {% endif %}
