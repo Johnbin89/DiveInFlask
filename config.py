@@ -1,11 +1,17 @@
 import os
+import secrets
 basedir = os.path.abspath(os.path.dirname(__file__))
+from dotenv import load_dotenv
+
+dotenv_file = os.path.join(basedir, '.env')
+if os.path.isfile(dotenv_file):
+    load_dotenv(dotenv_file)
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 's12567dg'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or secrets.token_urlsafe(16)
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-    FLASKY_MAIL_SENDER = '***REMOVED***'
+    FLASKY_MAIL_SENDER = os.environ.get('FLASKY_MAIL_SENDER')
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
 
     @staticmethod
@@ -14,20 +20,16 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-    ('***REMOVED***')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL')
+    MYSQL_CURSORCLASS = 'DictCursor'
 
-    MAIL_SERVER = '***REMOVED***'
-    MAIL_PORT = 587
+    MAIL_SERVER = os.environ.get('MAIL_SERVER')
+    MAIL_PORT = int(os.environ.get('MAIL_PORT'))
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 
-    MYSQL_USER = '***REMOVED***'
-    MYSQL_PASSWORD = '***REMOVED***'
-    MYSQL_HOST = '***REMOVED***'
-    MYSQL_DB = '***REMOVED***'
-    MYSQL_CURSORCLASS = 'DictCursor'
+    
 
 class TestingConfig(Config):
     TESTING = True
